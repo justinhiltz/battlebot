@@ -14,7 +14,7 @@ const navigation = {
     {
       name: "Instagram",
       href: "https://www.instagram.com/justinhiltz/",
-      icon: (props) => <i class="fa-brands fa-instagram fa-lg" />,
+      icon: (props) => <i className="fa-brands fa-instagram fa-lg" />,
     },
     {
       name: "Mastodon",
@@ -24,7 +24,7 @@ const navigation = {
     {
       name: "GitHub",
       href: "https://github.com/justinhiltz",
-      icon: (props) => <i class="fa-brands fa-github fa-lg" />,
+      icon: (props) => <i className="fa-brands fa-github fa-lg" />,
     },
   ],
 };
