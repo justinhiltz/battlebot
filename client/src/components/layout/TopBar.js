@@ -223,10 +223,13 @@ const TopBar = ({ user }) => {
   );
 };
 
+const currentUrl = window.location.pathname;
+
 const navigation = [
-  { name: "Battlebot", href: "#", current: true },
-  { name: "Verses", href: "#", current: false },
-  { name: "Rhyme", href: "/rhyme", current: false },
+  { name: "Home", href: "/", current: currentUrl === "/" },
+  { name: "Register", href: "/users/new", current: currentUrl === "/users/new" },
+  { name: "Sign In", href: "/user-sessions/new", current: currentUrl === "/user-sessions/new" },
+  { name: "Rhyme", href: "/rhyme", current: currentUrl === "/rhyme" },
 ];
 
 function classNames(...classes) {
