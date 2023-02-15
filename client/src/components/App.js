@@ -7,6 +7,9 @@ import getCurrentUser from "../services/getCurrentUser";
 import RegistrationForm from "./registration/RegistrationForm";
 import SignInForm from "./authentication/SignInForm";
 import TopBar from "./layout/TopBar";
+import Footer from "./layout/Footer";
+
+import Rhyme from "./Rhyme";
 
 const App = (props) => {
   const [currentUser, setCurrentUser] = useState(undefined);
@@ -32,7 +35,9 @@ const App = (props) => {
         </Route>
         <Route exact path="/users/new" component={RegistrationForm} />
         <Route exact path="/user-sessions/new" component={SignInForm} />
+        <Route exact path="/rhyme" component={Rhyme} />
       </Switch>
+      <Footer />
     </Router>
   );
 };

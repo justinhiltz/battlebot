@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRobot } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import SignOutButton from "../authentication/SignOutButton";
+import avatarPlaceholder from "../../assets/img/justin-sm.png";
 
 const TopBar = ({ user }) => {
   const unauthenticatedListItems = [
@@ -48,7 +49,7 @@ const TopBar = ({ user }) => {
             <div className="relative flex h-16 items-center justify-between">
               <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
                 {/* Mobile menu button*/}
-                <Disclosure.Button className="inline-flex items-center justify-center rounded-md p-2 text-rose-400 hover:bg-rose-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+                <Disclosure.Button className="inline-flex items-center justify-center rounded-md p-2 text-rose-200 hover:bg-rose-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
                   <span className="sr-only">Open main menu</span>
                   {open ? (
                     <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
@@ -63,20 +64,10 @@ const TopBar = ({ user }) => {
                     icon={faRobot}
                     className="block h-8 w-auto lg:hidden text-yellow-500"
                   />
-                  {/* <img
-                    className="block h-8 w-auto lg:hidden"
-                    src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-                    alt="Your Company"
-                  /> */}
                   <FontAwesomeIcon
                     icon={faRobot}
                     className="hidden h-8 w-auto lg:block text-yellow-500"
                   />
-                  {/*                   <img
-                    className="hidden h-8 w-auto lg:block"
-                    src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-                    alt="Your Company"
-                  /> */}
                 </div>
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
@@ -87,7 +78,7 @@ const TopBar = ({ user }) => {
                         className={classNames(
                           item.current
                             ? "bg-rose-900 text-white"
-                            : "text-rose-300 hover:bg-rose-700 hover:text-white",
+                            : "text-rose-200 hover:bg-rose-700 hover:text-white",
                           "px-3 py-2 rounded-md text-sm font-medium"
                         )}
                         aria-current={item.current ? "page" : undefined}
@@ -104,11 +95,7 @@ const TopBar = ({ user }) => {
                   <div>
                     <Menu.Button className="flex rounded-full bg-rose-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                       <span className="sr-only">Open user menu</span>
-                      <img
-                        className="h-8 w-8 rounded-full"
-                        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                        alt=""
-                      />
+                      <img className="h-8 w-8 rounded-full" src={avatarPlaceholder} alt="" />
                     </Menu.Button>
                   </div>
                   <Transition
@@ -196,6 +183,7 @@ const navigation = [
   { name: "Battlebot", href: "#", current: true },
   { name: "Battles", href: "#", current: false },
   { name: "Verses", href: "#", current: false },
+  { name: "Rhyme", href: "/rhyme", current: false },
 ];
 
 function classNames(...classes) {

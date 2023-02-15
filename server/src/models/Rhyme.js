@@ -1,9 +1,16 @@
-import got from "got";
+let got;
+async function getGot() {
+  if (!got) {
+    got = await import("got");
+  }
+  return got;
+}
 
 class Rhyme {
-  static async getRhyme(word) {
+  static async getRhyme(word = "") {
+    const got = await getGot();
     try {
-      const response = await got(`https://api.datamuse.com/words?ml=${word}&rel_rhy=${word}`);
+      const response = await got.default(`https://api.datamuse.com/words?&rel_rhy=${word}`);
       return JSON.parse(response.body);
     } catch (error) {
       console.error(error.response.body);
@@ -12,4 +19,4 @@ class Rhyme {
   }
 }
 
-export default Rhyme;
+module.exports = Rhyme;
