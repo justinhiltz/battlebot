@@ -161,12 +161,12 @@ const TopBar = ({ user }) => {
                   <FontAwesomeIcon
                     icon={faRobot}
                     className="block h-8 w-auto lg:hidden text-yellow-500"
-                    title="Battlebot"
+                    title="Hip-Hop Battlebots"
                   />
                   <FontAwesomeIcon
                     icon={faRobot}
                     className="hidden h-8 w-auto lg:block text-yellow-500"
-                    title="Battlebot"
+                    title="Hip-Hop Battlebots"
                   />
                 </div>
                 <div className="hidden sm:ml-6 sm:block">
