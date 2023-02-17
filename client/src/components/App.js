@@ -10,6 +10,7 @@ import TopBar from "./layout/TopBar";
 import Footer from "./layout/Footer";
 
 import Home from "./Home";
+import BattleShow from "./BattleShow";
 import Rhyme from "./Rhyme";
 
 const App = (props) => {
@@ -34,6 +35,7 @@ const App = (props) => {
         <Route exact path="/" component={Home} />
         <Route exact path="/users/new" component={RegistrationForm} />
         <Route exact path="/user-sessions/new" component={SignInForm} />
+        <Route exact path="/battles/:id" component={BattleShow} />
         <Route exact path="/rhyme" component={Rhyme} />
       </Switch>
       <Footer />
