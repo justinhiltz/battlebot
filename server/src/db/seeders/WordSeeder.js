@@ -7,10 +7,10 @@ class WordSeeder {
     const wordsData = [
       { word: "computer" },
       { word: "polluter" },
-      { word: "all" },
-      { word: "ball" },
-      { word: "truck" },
-      { word: "awestruck" },
+      { word: "burn" },
+      { word: "flowering fern" },
+      { word: "twitter" },
+      { word: "bitter" },
     ];
 
     await Word.query().insert(wordsData);
