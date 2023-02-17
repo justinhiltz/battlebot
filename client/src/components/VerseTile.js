@@ -2,8 +2,6 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRobot } from "@fortawesome/free-solid-svg-icons";
 
-// make variable that has one set of markup if the verse Id is odd and another if it is even
-
 const VerseTile = (props) => {
   let verseTile;
   if (props.id % 2 === 0) {
