@@ -1,6 +1,6 @@
-class WordSerializer {
-  static getDetails(word) {
-    const allowedAttributes = ["id", "word"];
+class RhymeSerializer {
+  static getSummary(word) {
+    const allowedAttributes = ["word"];
 
     let serializedWord = {};
     for (let attribute of allowedAttributes) {
@@ -10,4 +10,4 @@ class WordSerializer {
   }
 }
 
-export default WordSerializer;
+export default RhymeSerializer;

@@ -161,12 +161,12 @@ const TopBar = ({ user }) => {
                   <FontAwesomeIcon
                     icon={faRobot}
                     className="block h-8 w-auto lg:hidden text-yellow-500"
-                    title="Battlebot"
+                    title="Hip-Hop Battlebots"
                   />
                   <FontAwesomeIcon
                     icon={faRobot}
                     className="hidden h-8 w-auto lg:block text-yellow-500"
-                    title="Battlebot"
+                    title="Hip-Hop Battlebots"
                   />
                 </div>
                 <div className="hidden sm:ml-6 sm:block">
@@ -229,6 +229,7 @@ const navigation = [
   { name: "Home", href: "/", current: currentUrl === "/" },
   { name: "Register", href: "/users/new", current: currentUrl === "/users/new" },
   { name: "Sign In", href: "/user-sessions/new", current: currentUrl === "/user-sessions/new" },
+  { name: "Test Battle", href: "/battles/1", current: currentUrl === "/battles/1" },
   { name: "Rhyme", href: "/rhyme", current: currentUrl === "/rhyme" },
 ];
 
