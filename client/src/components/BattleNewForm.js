@@ -1,5 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Redirect } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import VerseTile from "./VerseTile";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMicrophoneSlash } from "@fortawesome/free-solid-svg-icons";
+import { faMicrophone } from "@fortawesome/free-solid-svg-icons";
+
 // import ErrorList from "./layout/ErrorList";
 
 const BattleNewForm = ({ currentUser }) => {
@@ -92,12 +97,32 @@ const BattleNewForm = ({ currentUser }) => {
         setNewWord({ word: "" });
         setErrors({});
         setVerses([...verses, body.verse]);
-        console.log("Body of Verses:", verses);
+        const punctuation = body.line.line.slice(-1);
+        setNewPunctuation(punctuation);
+        const replacedString = body.line.line.replace(/<\|REPLACE\|>/g, "").slice(0, -1);
+        setNewLine({ id: body.line.id, line: replacedString });
       }
     } catch (error) {
       console.error(`Error in fetch: ${error.message}`);
     }
   };
+
+  const history = useHistory();
+
+  const handleRedirect = () => {
+    history.push(`/battles/${verses[0].battleId}`);
+  };
+
+  const verseTileComponents = verses.map((verse) => {
+    return (
+      <VerseTile
+        key={verse.id}
+        id={verse.id}
+        sentence1={verse.sentence1}
+        sentence2={verse.sentence2}
+      />
+    );
+  });
 
   return (
     <div className="min-h-full">
@@ -116,33 +141,56 @@ const BattleNewForm = ({ currentUser }) => {
                 </h2>
                 <div className="mx-auto max-w-lg">
                   <div>
-                    {/* {verse} */}
-                    {verses.map((verse) => (
-                      <>
-                        <p key={verse.sentenceId1}>{verse.sentenceId1}</p>
-                        <p key={verse.sentenceId2}>{verse.sentenceId2}</p>
-                      </>
-                    ))}
-                    <form onSubmit={addWord}>
-                      <div>
-                        <p>
-                          {newLine.line}{" "}
-                          <label htmlFor="word" className="sr-only">
-                            Word
-                          </label>
-                          <input
-                            type="text"
-                            id="word"
-                            name="word"
-                            onChange={handleWordChange}
-                            value={newWord.word}
-                            className="p-0 border-b border-0 focus:border-yellow-400 focus:outline-none focus:ring-yellow-400"
-                          />{" "}
-                          {newPunctuation}
-                        </p>
-                      </div>
-                      <input className="button" type="submit" value="Submit" />
-                    </form>
+                    {verseTileComponents}
+                    <div className="mx-auto mt-10 text-center flex justify-center">
+                      <form onSubmit={addWord}>
+                        <div>
+                          <p>
+                            {newLine.line}{" "}
+                            <label htmlFor="word" className="sr-only">
+                              Word
+                            </label>
+                            <input
+                              type="text"
+                              id="word"
+                              name="word"
+                              onChange={handleWordChange}
+                              value={newWord.word}
+                              placeholder="enter a single word"
+                              className="p-0 border-b border-0 focus:border-yellow-400 focus:outline-none focus:ring-yellow-400"
+                            />{" "}
+                            {newPunctuation}
+                          </p>
+                        </div>
+                        <div className="mt-4 justify-center flex gap-x-4">
+                          <button
+                            type="submit"
+                            value="Spit it"
+                            className="inline-flex items-center rounded-md border border-transparent bg-green-500 px-4 py-2 text-base font-medium text-black shadow-sm hover:bg-green-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
+                          >
+                            <FontAwesomeIcon
+                              icon={faMicrophone}
+                              className="h-4 w-4 text-black"
+                              title="Mic Drop"
+                            />{" "}
+                            Spit it
+                          </button>
+                          <button
+                            type="button"
+                            value="Mic Drop"
+                            onClick={handleRedirect}
+                            className="inline-flex items-center rounded-md border border-transparent bg-red-500 px-3 py-2 text-base font-medium text-black shadow-sm hover:bg-red-400 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
+                          >
+                            <FontAwesomeIcon
+                              icon={faMicrophoneSlash}
+                              className="h-4 w-4 text-black"
+                              title="Mic Drop"
+                            />{" "}
+                            Mic Drop
+                          </button>
+                        </div>
+                      </form>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -155,26 +203,3 @@ const BattleNewForm = ({ currentUser }) => {
 };
 
 export default BattleNewForm;
-
-// # PErsisting one Verse
-// update the Battle1stStenceForm to only have one POST
-// this should
-// make a new word
-// associate that word with the already existing line
-// make a new Sentence out of the word and line
-
-// in the same router endpoint, create a new sentence that rhymes
-// make the Verse that joins the two sentences
-
-// # Get the Verse(s) to display
-// conditionally render verses if there are any present (which should happen after we submit the form once)
-// "verses" state should be an array of verse objects
-
-// # reshow the form once more for the next verse (and the cycle begins again
-// when you make a new POST make sure you send the BattleId as well, so that we can add this new sentence/verse to an existing one )
-
-// # render a "stop" battle button that brings you to the battle show page for all of the verses
-
-// # usershow page to review all created battles
-
-//  # fix the

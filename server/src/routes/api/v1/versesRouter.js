@@ -1,6 +1,7 @@
 import express from "express";
 import { Word, Verse, Sentence, Line, Rhyme, Battle } from "../../../models/index.js";
 import VerseSerializer from "../../../serializers/VerseSerializer.js";
+import LineSerializer from "../../../serializers/LineSerializer.js";
 
 const versesRouter = new express.Router();
 
@@ -34,43 +35,45 @@ versesRouter.get("/:id", async (req, res) => {
 versesRouter.post("/", async (req, res) => {
   const { body } = req;
   const { word, lineId, currentUserId } = body;
+
   try {
-    // console.log("Body:", body);
-    // create the battle here
-    const newBattle = await Battle.query().insertAndFetch({ userId: currentUserId });
-    // console.log("Original body:", body);
+    let battle;
+    if (req.query?.battleId) {
+      battle = await Battle.query().findById(req.query?.battleId);
+    } else {
+      battle = await Battle.query().insertAndFetch({ userId: currentUserId });
+    }
+
     const newWord = await Word.query().insertAndFetch({ word });
-    // console.log("newWord:", newWord);
     const line1 = await Line.query().findById(lineId);
-    // console.log("line1 id:", line1.id);
     const sentence1 = await Sentence.query().insertAndFetch({
       lineId: line1.id,
       wordId: newWord.id,
     });
-    // console.log("sentence1:", sentence1);
-
     const rhymedWord = await Rhyme.getRhyme(word);
-    // console.log("rhymedWord:", rhymedWord);
     const saveRhymedWord = await Word.query().insertAndFetch({ word: rhymedWord.word });
     const line2 = await Line.query().orderByRaw("RANDOM()").first();
-    // console.log("line2:", line2);
     const sentence2 = await Sentence.query().insertAndFetch({
       lineId: line2.id,
       wordId: saveRhymedWord.id,
     });
-    // console.log("sentence2:", sentence2);
-
     const newVerse = await Verse.query().insertAndFetch({
       sentenceId1: sentence1.id,
       sentenceId2: sentence2.id,
-      battleId: newBattle.id,
+      battleId: battle.id,
     });
-    // console.log("newVerse:", newVerse);
-    // console.log("Battle:", newBattle);
 
-    // return res.status(201).json({ word: newWord, line: line, sentence: sentence });
-    console.log("New verse:", newVerse);
-    return res.status(201).json({ verse: newVerse });
+    const completedSentence1 = replaceWordInLine(line1.line, newWord.word);
+    const completedSentence2 = replaceWordInLine(line2.line, rhymedWord.word);
+    newVerse.sentence1 = completedSentence1;
+    newVerse.sentence2 = completedSentence2;
+
+    // next verse creation
+    const lines = await Line.query();
+    const randomLine = lines[Math.floor(Math.random() * lines.length)];
+    const serializedLine = LineSerializer.getDetails(randomLine);
+
+    return res.status(201).json({ verse: newVerse, line: serializedLine });
   } catch (error) {
     console.log(error);
     return res.status(500).json({ errors: error });
