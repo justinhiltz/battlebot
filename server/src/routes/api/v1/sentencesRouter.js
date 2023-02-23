@@ -27,4 +27,15 @@ sentencesRouter.get("/:id", async (req, res) => {
   }
 });
 
+sentencesRouter.post("/", async (req, res) => {
+  const { body } = req;
+  try {
+    const newSentence = await Sentence.query().insertAndFetch(body);
+    return res.status(201).json({ sentence: newSentence });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ errors: error });
+  }
+});
+
 export default sentencesRouter;

@@ -9,7 +9,7 @@ class Battle extends Model {
     return {
       type: "object",
       properties: {
-        id: { type: "integer" },
+        id: { type: ["integer", "string"] },
         userId: { type: ["integer", "string"] },
       },
     };

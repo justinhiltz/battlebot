@@ -21,7 +21,7 @@ const Home = (props) => {
                   <span className="block text-rose-200">robots have a rap battle?</span>
                 </h1>
                 <p className="mx-auto mt-6 max-w-lg text-center text-xl text-rose-200 sm:max-w-3xl">
-                  Battlebot lets you emcee a rap battle between two robots
+                  Hip-Hop Battlebots lets you emcee a rap battle between two robots
                 </p>
                 <div className="mx-auto mt-10 max-w-sm sm:flex sm:max-w-none sm:justify-center">
                   <a

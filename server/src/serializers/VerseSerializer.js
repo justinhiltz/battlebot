@@ -1,6 +1,6 @@
 class VerseSerializer {
   static getDetails(verse) {
-    const allowedAttributes = ["id", "sentence1", "sentence2"];
+    const allowedAttributes = ["id", "battleId", "sentence1", "sentence2"];
 
     let serializedVerse = {};
     for (let attribute of allowedAttributes) {

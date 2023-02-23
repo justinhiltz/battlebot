@@ -15,4 +15,14 @@ wordsRouter.get("/:id", async (req, res) => {
   }
 });
 
+/* wordsRouter.post("/", async (req, res) => {
+  const { body } = req;
+  try {
+    const newWord = await Word.query().insertAndFetch(body);
+    return res.status(201).json({ word: newWord });
+  } catch (error) {
+    return res.status(500).json({ errors: error });
+  }
+}); */
+
 export default wordsRouter;

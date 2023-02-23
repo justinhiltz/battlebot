@@ -1,6 +1,6 @@
 class BattleSerializer {
   static getDetails(battle) {
-    const allowedAttributes = ["id", "userId", "username", "verses"];
+    const allowedAttributes = ["id", "title", "userId", "username", "verses"];
 
     let serializedBattle = {};
     for (let attribute of allowedAttributes) {

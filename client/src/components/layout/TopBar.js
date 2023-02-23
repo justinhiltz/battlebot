@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faRobot } from "@fortawesome/free-solid-svg-icons";
+import { faRobot, faBars, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { faCircleUser } from "@fortawesome/free-regular-svg-icons";
 import { Link } from "react-router-dom";
-import avatarPlaceholder from "../../assets/img/justin-sm.png";
 
 const TopBar = ({ user }) => {
   const [shouldRedirect, setShouldRedirect] = useState(false);
@@ -94,7 +92,10 @@ const TopBar = ({ user }) => {
       <div>
         <Menu.Button className="flex rounded-full bg-rose-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-yellow-700">
           <span className="sr-only">Open user menu</span>
-          <img className="h-8 w-8 rounded-full" src={avatarPlaceholder} alt="" />
+          <FontAwesomeIcon
+            icon={faCircleUser}
+            className="h-8 w-8 rounded-full text-yellow-500 hover:text-yellow-400"
+          />
         </Menu.Button>
       </div>
       <Transition
@@ -150,9 +151,17 @@ const TopBar = ({ user }) => {
                 <Disclosure.Button className="inline-flex items-center justify-center rounded-md p-2 text-rose-200 hover:bg-rose-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
                   <span className="sr-only">Open main menu</span>
                   {open ? (
-                    <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
+                    <FontAwesomeIcon
+                      icon={faXmark}
+                      className="block h-6 w-6 lg:hidden text-yellow-500"
+                      title="Close main menu"
+                    />
                   ) : (
-                    <Bars3Icon className="block h-6 w-6" aria-hidden="true" />
+                    <FontAwesomeIcon
+                      icon={faBars}
+                      className="block h-6 w-6 lg:hidden text-yellow-500"
+                      title="Open main menu"
+                    />
                   )}
                 </Disclosure.Button>
               </div>
@@ -227,10 +236,8 @@ const currentUrl = window.location.pathname;
 
 const navigation = [
   { name: "Home", href: "/", current: currentUrl === "/" },
-  { name: "Register", href: "/users/new", current: currentUrl === "/users/new" },
-  { name: "Sign In", href: "/user-sessions/new", current: currentUrl === "/user-sessions/new" },
+  { name: "Create New Battle", href: "/battles/new", current: currentUrl === "/battles/new" },
   { name: "Test Battle", href: "/battles/1", current: currentUrl === "/battles/1" },
-  { name: "Rhyme", href: "/rhyme", current: currentUrl === "/rhyme" },
 ];
 
 function classNames(...classes) {
