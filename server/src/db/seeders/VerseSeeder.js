@@ -4,12 +4,10 @@ class VerseSeeder {
   static async seed() {
     await Verse.query().delete();
 
-    const Battle1 = await Battle.query().findOne({ id: 1 });
-
     const versesData = [
-      { sentenceId1: 1, sentenceId2: 2, battleId: Battle1.id },
-      { sentenceId1: 3, sentenceId2: 4, battleId: Battle1.id },
-      { sentenceId1: 5, sentenceId2: 6, battleId: Battle1.id },
+      { sentenceId1: 1, sentenceId2: 2, battleId: 1 },
+      { sentenceId1: 3, sentenceId2: 4, battleId: 1 },
+      { sentenceId1: 5, sentenceId2: 6, battleId: 1 },
     ];
 
     await Verse.query().insert(versesData);

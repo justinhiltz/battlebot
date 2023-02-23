@@ -227,8 +227,7 @@ const currentUrl = window.location.pathname;
 
 const navigation = [
   { name: "Home", href: "/", current: currentUrl === "/" },
-  { name: "Register", href: "/users/new", current: currentUrl === "/users/new" },
-  { name: "Sign In", href: "/user-sessions/new", current: currentUrl === "/user-sessions/new" },
+  { name: "Create New Battle", href: "/battles/new", current: currentUrl === "/battles/new" },
   { name: "Test Battle", href: "/battles/1", current: currentUrl === "/battles/1" },
   { name: "Rhyme", href: "/rhyme", current: currentUrl === "/rhyme" },
 ];

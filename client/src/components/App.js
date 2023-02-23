@@ -3,13 +3,13 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { hot } from "react-hot-loader/root";
 
 import getCurrentUser from "../services/getCurrentUser";
-// import "../assets/scss/main.scss";
 import RegistrationForm from "./registration/RegistrationForm";
 import SignInForm from "./authentication/SignInForm";
 import TopBar from "./layout/TopBar";
 import Footer from "./layout/Footer";
 
 import Home from "./Home";
+import BattleNewForm from "./BattleNewForm";
 import BattleShow from "./BattleShow";
 import Rhyme from "./Rhyme";
 
@@ -35,6 +35,11 @@ const App = (props) => {
         <Route exact path="/" component={Home} />
         <Route exact path="/users/new" component={RegistrationForm} />
         <Route exact path="/user-sessions/new" component={SignInForm} />
+        <Route
+          exact
+          path="/battles/new"
+          render={(props) => <BattleNewForm {...props} currentUser={currentUser} />}
+        />
         <Route exact path="/battles/:id" component={BattleShow} />
         <Route exact path="/rhyme" component={Rhyme} />
       </Switch>

@@ -11,7 +11,10 @@ class Rhyme {
     const got = await getGot();
     try {
       const response = await got.default(`https://api.datamuse.com/words?&rel_rhy=${word}`);
-      return JSON.parse(response.body);
+      const randomRhyme = JSON.parse(response.body)[
+        Math.floor(Math.random() * JSON.parse(response.body).length)
+      ];
+      return randomRhyme;
     } catch (error) {
       console.error(error.response.body);
       return error;

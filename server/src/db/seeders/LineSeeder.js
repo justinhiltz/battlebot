@@ -530,7 +530,7 @@ class LineSeeder {
       { line: "This'll be the outcome: You're gonna <|REPLACE|>." },
       { line: "Throw in the towel you've seen your last <|REPLACE|>." },
       { line: "To feed my rhymes I drink the blood of a <|REPLACE|>." },
-      { line: "To reach the next level u gotta b <|REPLACE|>." },
+      { line: "To reach the next level u gotta be <|REPLACE|>." },
       { line: "Try and hold me down I'll still <|REPLACE|>." },
       { line: "Try to keep up. Do you need a <|REPLACE|>?" },
       { line: "Trying to catch me is a wild goose <|REPLACE|>." },

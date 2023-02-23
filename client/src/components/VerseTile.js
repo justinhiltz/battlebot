@@ -17,7 +17,7 @@ const VerseTile = (props) => {
               <div className="flex-shrink-0">
                 <FontAwesomeIcon
                   icon={faRobot}
-                  className="h-10 w-10 lg:hidden text-sky-500"
+                  className="h-10 w-10 text-sky-500"
                   title="Robot 2"
                 />
               </div>
@@ -35,7 +35,7 @@ const VerseTile = (props) => {
               <div className="flex-shrink-0">
                 <FontAwesomeIcon
                   icon={faRobot}
-                  className="h-10 w-10 lg:hidden text-red-500"
+                  className="h-10 w-10 text-red-500"
                   title="Robot 2"
                 />
               </div>

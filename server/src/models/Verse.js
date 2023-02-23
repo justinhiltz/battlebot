@@ -8,11 +8,12 @@ class Verse extends Model {
   static get jsonSchema() {
     return {
       type: "object",
-      required: ["sentenceId1", "sentenceId2"],
+      required: ["sentenceId1", "sentenceId2", "battleId"],
       properties: {
-        id: { type: "integer" },
-        sentenceId1: { type: "integer" },
-        sentenceId2: { type: "integer" },
+        id: { type: ["integer", "string"] },
+        sentenceId1: { type: ["integer", "string"] },
+        sentenceId2: { type: ["integer", "string"] },
+        battleId: { type: ["integer", "string"] },
         createdAt: { type: "string" },
         updatedAt: { type: "string" },
       },
@@ -20,7 +21,7 @@ class Verse extends Model {
   }
 
   static get relationMappings() {
-    const Sentence = require("./Sentence.js");
+    const { Sentence, Battle } = require("./index.js");
 
     return {
       sentences: {
@@ -29,6 +30,14 @@ class Verse extends Model {
         join: {
           from: "verses.id",
           to: "sentences.verseId",
+        },
+      },
+      battle: {
+        relation: Model.BelongsToOneRelation,
+        modelClass: Battle,
+        join: {
+          from: "verses.battleId",
+          to: "battles.id",
         },
       },
     };

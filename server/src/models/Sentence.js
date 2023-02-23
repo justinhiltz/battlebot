@@ -11,8 +11,8 @@ class Sentence extends Model {
       required: ["wordId", "lineId"],
       properties: {
         id: { type: "integer" },
-        wordId: { type: "integer" },
-        lineId: { type: "integer" },
+        wordId: { type: ["integer", "string"] },
+        lineId: { type: ["integer", "string"] },
         createdAt: { type: "string" },
         updatedAt: { type: "string" },
       },
