@@ -10,6 +10,18 @@ function replaceWordInLine(line, word) {
   return line.replace(/<\|REPLACE\|>/g, word);
 }
 
+battlesRouter.get("/", async (req, res) => {
+  try {
+    const battles = await Battle.query();
+    const serializedBattles = battles.map((battle) => {
+      return BattleSerializer.getDetails(battle);
+    });
+    return res.status(200).json({ battles: serializedBattles });
+  } catch (error) {
+    return res.status(500).json({ errors: error });
+  }
+});
+
 battlesRouter.get("/:id", async (req, res) => {
   const id = req.params.id;
   try {

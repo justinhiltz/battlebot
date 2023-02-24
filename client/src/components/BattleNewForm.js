@@ -1,3 +1,5 @@
+// Broken BattleNewForm with User Auth
+
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import VerseTile from "./VerseTile";
@@ -113,6 +115,81 @@ const BattleNewForm = ({ currentUser }) => {
     history.push(`/battles/${verses[0].battleId}`);
   };
 
+  const unauthenticatedView = (
+    <div className="py-12 px-6">
+      <div className="mx-auto max-w-2xl text-center">
+        <h3 className="text-4xl font-bold tracking-tight text-gray-900">
+          You must be logged in to create a battle
+        </h3>
+        <p className="mx-auto mt-6 max-w-xl text-lg leading-8 text-gray-600">
+          Please Sign In or Register to continue using Hip-Hop Battlebots
+        </p>
+        <div className="mt-6 flex items-center justify-center gap-x-6">
+          <a
+            href="/user-sessions/new"
+            className="rounded-md bg-yellow-500 px-3.5 py-2.5 text-sm font-semibold text-black shadow-sm hover:bg-yellow-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-500"
+          >
+            Sign In
+          </a>
+          <a
+            href="/users/new"
+            className="rounded-md bg-yellow-500 px-3.5 py-2.5 text-sm font-semibold text-black shadow-sm hover:bg-yellow-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-500"
+          >
+            Register
+          </a>
+        </div>
+      </div>
+    </div>
+  );
+
+  const authenticatedView = (
+    <div className="mx-auto mt-10 text-center flex justify-center">
+      <form onSubmit={addWord}>
+        <div>
+          <p className="text-md font-medium">
+            {newLine.line}{" "}
+            <label htmlFor="word" className="sr-only">
+              enter a single word
+            </label>
+            <input
+              type="text"
+              id="word"
+              name="word"
+              onChange={handleWordChange}
+              value={newWord.word}
+              placeholder="enter a single word"
+              className="p-0 border-b border-0 focus:border-yellow-400 focus:outline-none focus:ring-yellow-400"
+            />{" "}
+            {newPunctuation}
+          </p>
+        </div>
+        <div className="mt-4 justify-center flex gap-x-4">
+          <button
+            type="submit"
+            value="Spit it"
+            className="inline-flex items-center rounded-md border border-transparent bg-green-500 px-4 py-2 text-base font-medium text-black shadow-sm hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
+          >
+            <FontAwesomeIcon icon={faMicrophone} className="h-4 w-4 text-black" title="Mic Drop" />{" "}
+            Spit it
+          </button>
+          <button
+            type="button"
+            value="Mic Drop"
+            onClick={handleRedirect}
+            className="inline-flex items-center rounded-md border border-transparent bg-red-500 px-3 py-2 text-base font-medium text-black shadow-sm hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
+          >
+            <FontAwesomeIcon
+              icon={faMicrophoneSlash}
+              className="h-5 w-5 mr-1 text-black"
+              title="Mic Drop"
+            />{" "}
+            Mic Drop
+          </button>
+        </div>
+      </form>
+    </div>
+  );
+
   const verseTileComponents = verses.map((verse) => {
     return (
       <VerseTile
@@ -140,58 +217,8 @@ const BattleNewForm = ({ currentUser }) => {
                   Create a new battle
                 </h2>
                 <div className="mx-auto max-w-lg">
-                  <div>
-                    {verseTileComponents}
-                    <div className="mx-auto mt-10 text-center flex justify-center">
-                      <form onSubmit={addWord}>
-                        <div>
-                          <p>
-                            {newLine.line}{" "}
-                            <label htmlFor="word" className="sr-only">
-                              Word
-                            </label>
-                            <input
-                              type="text"
-                              id="word"
-                              name="word"
-                              onChange={handleWordChange}
-                              value={newWord.word}
-                              placeholder="enter a single word"
-                              className="p-0 border-b border-0 focus:border-yellow-400 focus:outline-none focus:ring-yellow-400"
-                            />{" "}
-                            {newPunctuation}
-                          </p>
-                        </div>
-                        <div className="mt-4 justify-center flex gap-x-4">
-                          <button
-                            type="submit"
-                            value="Spit it"
-                            className="inline-flex items-center rounded-md border border-transparent bg-green-500 px-4 py-2 text-base font-medium text-black shadow-sm hover:bg-green-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
-                          >
-                            <FontAwesomeIcon
-                              icon={faMicrophone}
-                              className="h-4 w-4 text-black"
-                              title="Mic Drop"
-                            />{" "}
-                            Spit it
-                          </button>
-                          <button
-                            type="button"
-                            value="Mic Drop"
-                            onClick={handleRedirect}
-                            className="inline-flex items-center rounded-md border border-transparent bg-red-500 px-3 py-2 text-base font-medium text-black shadow-sm hover:bg-red-400 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
-                          >
-                            <FontAwesomeIcon
-                              icon={faMicrophoneSlash}
-                              className="h-4 w-4 text-black"
-                              title="Mic Drop"
-                            />{" "}
-                            Mic Drop
-                          </button>
-                        </div>
-                      </form>
-                    </div>
-                  </div>
+                  {verseTileComponents}
+                  {currentUser ? authenticatedView : unauthenticatedView}
                 </div>
               </div>
             </div>

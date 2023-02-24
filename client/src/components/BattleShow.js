@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import VerseTile from "./VerseTile";
 
 const BattleShow = (props) => {
@@ -51,9 +52,11 @@ const BattleShow = (props) => {
                 <h2 className="text-center text-3xl font-bold tracking-tight text-gray-900">
                   Tonight's Main Event
                 </h2>
-                <h3 className="text-center text-xl tracking-tight text-gray-600">
-                  Emcee'd by {battle.username}
-                </h3>
+                <Link to={`/users/${battle.userId}`}>
+                  <h3 className="text-center text-xl tracking-tight text-gray-600">
+                    Emcee'd by {battle.username}
+                  </h3>
+                </Link>
                 <div>{verseTileComponents}</div>
               </div>
             </div>

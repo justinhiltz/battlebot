@@ -25,7 +25,7 @@ const Home = (props) => {
                 </p>
                 <div className="mx-auto mt-10 max-w-sm sm:flex sm:max-w-none sm:justify-center">
                   <a
-                    href="#"
+                    href="/battles"
                     className="flex items-center justify-center rounded-md border border-transparent bg-yellow-500 px-4 py-3 text-base font-medium text-black shadow-sm hover:bg-yellow-400 sm:px-8"
                   >
                     Check out some battles
