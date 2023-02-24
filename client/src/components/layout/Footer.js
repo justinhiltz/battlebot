@@ -21,6 +21,11 @@ const navigation = {
       href: "https://github.com/justinhiltz",
       icon: (props) => <i className="fa-brands fa-github fa-lg" />,
     },
+    {
+      name: "LinkedIn",
+      href: "https://www.linkedin.com/in/justinhiltz/",
+      icon: (props) => <i className="fa-brands fa-linkedin fa-lg" />,
+    },
   ],
 };
 
