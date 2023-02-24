@@ -3,8 +3,7 @@ import React from "react";
 const navigation = {
   main: [
     { name: "About", href: "/about" },
-    { name: "Contact", href: "mailto:justin@dumbstuff.net" },
-    { name: "Blog", href: "https://dumbstuff.net" },
+    { name: "Contact", href: "mailto:justin.hiltz@gmail.com" },
   ],
   social: [
     {
