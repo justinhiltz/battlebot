@@ -13,6 +13,7 @@ import BattleNewForm from "./BattleNewForm";
 import BattleList from "./BattleList";
 import BattleShow from "./BattleShow";
 import UserBattleShow from "./UserBattleShow";
+import About from "./About";
 
 const App = (props) => {
   const [currentUser, setCurrentUser] = useState(undefined);
@@ -44,6 +45,7 @@ const App = (props) => {
         />
         <Route exact path="/battles" component={BattleList} />
         <Route exact path="/battles/:id" component={BattleShow} />
+        <Route exact path="/about" component={About} />
       </Switch>
       <Footer />
     </Router>

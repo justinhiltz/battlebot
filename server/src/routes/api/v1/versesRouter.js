@@ -38,9 +38,13 @@ versesRouter.post("/", async (req, res) => {
 
   try {
     let battle;
+    console.log(req.query);
     if (req.query?.battleId) {
+      console.log("GETTING EXISTING BATTLE");
+
       battle = await Battle.query().findById(req.query?.battleId);
     } else {
+      console.log("ADDING NEW BATTLE");
       battle = await Battle.query().insertAndFetch({ userId: currentUserId });
     }
 
@@ -73,7 +77,7 @@ versesRouter.post("/", async (req, res) => {
     const randomLine = lines[Math.floor(Math.random() * lines.length)];
     const serializedLine = LineSerializer.getDetails(randomLine);
 
-    return res.status(201).json({ verse: newVerse, line: serializedLine });
+    return res.status(201).json({ verse: newVerse, line: serializedLine, battleId: battle.id });
   } catch (error) {
     console.log(error);
     return res.status(500).json({ errors: error });
