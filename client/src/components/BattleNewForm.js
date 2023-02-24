@@ -18,6 +18,7 @@ const BattleNewForm = ({ currentUser }) => {
   const [newPunctuation, setNewPunctuation] = useState("");
   const [verses, setVerses] = useState([]);
   const [errors, setErrors] = useState({});
+  const [battleId, setBattleId] = useState(null);
 
   const getLine = async () => {
     try {
@@ -78,13 +79,25 @@ const BattleNewForm = ({ currentUser }) => {
     }
 
     try {
-      const response = await fetch("/api/v1/verses", {
-        method: "POST",
-        headers: new Headers({
-          "Content-Type": "application/json",
-        }),
-        body: JSON.stringify({ ...newWord, lineId: newLine.id, currentUserId: currentUser.id }),
-      });
+      let response;
+      if (battleId) {
+        response = await fetch(`/api/v1/verses?battleId=${battleId}`, {
+          method: "POST",
+          headers: new Headers({
+            "Content-Type": "application/json",
+          }),
+          body: JSON.stringify({ ...newWord, lineId: newLine.id, currentUserId: currentUser.id }),
+        });
+      } else {
+        response = await fetch("/api/v1/verses", {
+          method: "POST",
+          headers: new Headers({
+            "Content-Type": "application/json",
+          }),
+          body: JSON.stringify({ ...newWord, lineId: newLine.id, currentUserId: currentUser.id }),
+        });
+      }
+
       if (!response.ok) {
         if (response.status === 422) {
           const body = await response.json();
@@ -96,6 +109,8 @@ const BattleNewForm = ({ currentUser }) => {
         throw error;
       } else {
         const body = await response.json();
+        console.log("IN THE BODY", body);
+        setBattleId(body.battleId);
         setNewWord({ word: "" });
         setErrors({});
         setVerses([...verses, body.verse]);

@@ -12,6 +12,7 @@ const clientRoutes = [
   "/battles",
   "/battles/new",
   "/battles/:id",
+  "/about",
 ];
 router.get(clientRoutes, (req, res) => {
   res.sendFile(getClientIndexPath());
