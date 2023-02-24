@@ -24,8 +24,6 @@ const BattleList = (props) => {
     getBattles();
   }, []);
 
-  console.log(battles);
-
   const battleListItems = battles.map((battle) => {
     return <BattleTile key={battle.id} id={battle.id} userId={battle.userId} />;
   });
