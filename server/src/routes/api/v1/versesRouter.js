@@ -72,7 +72,6 @@ versesRouter.post("/", async (req, res) => {
     newVerse.sentence1 = completedSentence1;
     newVerse.sentence2 = completedSentence2;
 
-    // next verse creation
     const lines = await Line.query();
     const randomLine = lines[Math.floor(Math.random() * lines.length)];
     const serializedLine = LineSerializer.getDetails(randomLine);

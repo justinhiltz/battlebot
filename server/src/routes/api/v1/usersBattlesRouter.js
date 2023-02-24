@@ -1,4 +1,3 @@
-// make a router that gets all the battles for a user
 import express from "express";
 import { Battle } from "../../../models/index.js";
 import BattleSerializer from "../../../serializers/BattleSerializer.js";

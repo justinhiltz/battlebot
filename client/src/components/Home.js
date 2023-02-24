@@ -23,12 +23,15 @@ const Home = (props) => {
                 <p className="mx-auto mt-6 max-w-lg text-center text-xl text-rose-200 sm:max-w-3xl">
                   Hip-Hop Battlebots lets you emcee a rap battle between two robots
                 </p>
-                <div className="mx-auto mt-10 max-w-sm sm:flex sm:max-w-none sm:justify-center">
+                <div className="mt-10 flex items-center justify-center gap-x-6">
                   <a
-                    href="/battles"
+                    href="/battles/new"
                     className="flex items-center justify-center rounded-md border border-transparent bg-yellow-500 px-4 py-3 text-base font-medium text-black shadow-sm hover:bg-yellow-400 sm:px-8"
                   >
-                    Check out some battles
+                    Create a battle
+                  </a>
+                  <a href="/battles" className="text-sm font-semibold leading-6 text-yellow-500">
+                    View some battles <span aria-hidden="true">→</span>
                   </a>
                 </div>
               </div>
