@@ -49,9 +49,9 @@ const BattleNewForm = ({ currentUser }) => {
     getLine();
   }, []);
 
-  useEffect(() => {
+  /*   useEffect(() => {
     console.log("Verses:", verses);
-  }, [verses]);
+  }, [verses]); */
 
   const handleWordChange = (event) => {
     event.preventDefault();

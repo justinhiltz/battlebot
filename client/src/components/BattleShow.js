@@ -25,7 +25,6 @@ const BattleShow = (props) => {
     getBattle();
   }, []);
 
-  console.log(battle.verses);
   const verseTileComponents = battle.verses.map((verse) => {
     return (
       <VerseTile
