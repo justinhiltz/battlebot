@@ -111,7 +111,7 @@ const TopBar = ({ user }) => {
           <Menu.Item>
             {({ active }) => (
               <a
-                href="#"
+                href={`/users/${user.id}`}
                 className={classNames(
                   active ? "bg-rose-100" : "",
                   "block px-4 py-2 text-sm text-rose-700"
@@ -236,8 +236,8 @@ const currentUrl = window.location.pathname;
 
 const navigation = [
   { name: "Home", href: "/", current: currentUrl === "/" },
+  { name: "Battles", href: "/battles", current: currentUrl.match(/^\/battles(\/\d+)?$/) !== null },
   { name: "Create New Battle", href: "/battles/new", current: currentUrl === "/battles/new" },
-  { name: "Test Battle", href: "/battles/1", current: currentUrl === "/battles/1" },
 ];
 
 function classNames(...classes) {

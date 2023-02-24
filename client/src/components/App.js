@@ -10,8 +10,9 @@ import Footer from "./layout/Footer";
 
 import Home from "./Home";
 import BattleNewForm from "./BattleNewForm";
+import BattleList from "./BattleList";
 import BattleShow from "./BattleShow";
-import Rhyme from "./Rhyme";
+import UserBattleShow from "./UserBattleShow";
 
 const App = (props) => {
   const [currentUser, setCurrentUser] = useState(undefined);
@@ -35,13 +36,14 @@ const App = (props) => {
         <Route exact path="/" component={Home} />
         <Route exact path="/users/new" component={RegistrationForm} />
         <Route exact path="/user-sessions/new" component={SignInForm} />
+        <Route exact path="/users/:id" component={UserBattleShow} />
         <Route
           exact
           path="/battles/new"
           render={(props) => <BattleNewForm {...props} currentUser={currentUser} />}
         />
+        <Route exact path="/battles" component={BattleList} />
         <Route exact path="/battles/:id" component={BattleShow} />
-        <Route exact path="/rhyme" component={Rhyme} />
       </Switch>
       <Footer />
     </Router>
