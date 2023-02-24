@@ -1,3 +1,9 @@
-# Battlebot
+# Hip-Hop Battlebots
 
-Rap battles between robots.
+Hip-Hop Battlebots lets you emcee a rap battle between two robots
+
+## Technologies
+
+- React
+- Express
+- Datamuse API
