@@ -1,12 +1,9 @@
-// Broken BattleNewForm with User Auth
-
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import VerseTile from "./VerseTile";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMicrophoneSlash } from "@fortawesome/free-solid-svg-icons";
 import { faMicrophone } from "@fortawesome/free-solid-svg-icons";
-
 // import ErrorList from "./layout/ErrorList";
 
 const BattleNewForm = ({ currentUser }) => {
