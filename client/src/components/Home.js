@@ -28,7 +28,7 @@ const Home = (props) => {
                     href="/battles/new"
                     className="flex items-center justify-center rounded-md border border-transparent bg-yellow-500 px-4 py-3 text-base font-medium text-black shadow-sm hover:bg-yellow-400 sm:px-8"
                   >
-                    Create a battle
+                    Create a new battle
                   </a>
                   <a href="/battles" className="text-sm font-semibold leading-6 text-yellow-500">
                     View some battles <span aria-hidden="true">→</span>
