@@ -10,6 +10,7 @@
     "build:client": "yarn workspace battlebot-client build",
     "dev": "yarn workspace battlebot-server dev",
     "dev:debug": "yarn workspace battlebot-server dev:debug",
+    "tailwind": "yarn workspace battlebot-client tailwind",
     "heroku-postbuild": "yarn workspace battlebot-client build",
     "start": "yarn workspace battlebot-server start",
     "dev:cypress": "yarn workspace battlebot-server dev:e2e",
